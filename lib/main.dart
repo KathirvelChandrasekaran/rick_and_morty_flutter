@@ -14,7 +14,7 @@ void main() => runApp(MaterialApp(
           ),
         ),
         backgroundColor: Colors.white,
-        duration: 2000,
+        duration: 1400,
         nextScreen: HomeScreen(),
       ),
     ));
