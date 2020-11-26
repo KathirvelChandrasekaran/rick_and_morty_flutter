@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:bottom_navy_bar/bottom_navy_bar.dart';
+import 'package:rick_and_morty/Screens/About%20Me.dart';
 import 'package:rick_and_morty/Screens/Characters.dart';
 import 'package:rick_and_morty/Screens/Episodes.dart';
 import 'package:rick_and_morty/Screens/Location.dart';
@@ -7,7 +8,7 @@ import 'package:rick_and_morty/Screens/Location.dart';
 Color c1 = Color(0xff764248);
 Color c2 = Color(0xffdda3b2);
 Color c3 = Color(0xffffadc6);
-
+Color c4 = Colors.white;
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -15,12 +16,13 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  List colorList = [c1,c2,c3,];
+  List colorList = [c1,c2,c3,c4];
 
   List screenList = [
     Character(),
     Location(),
-    Episodes()
+    Episodes(),
+    AboutMe()
   ];
 
   @override
@@ -65,6 +67,15 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             title: Text('Episodes'),
             activeColor: Colors.white,
+          ),
+          BottomNavyBarItem(
+            icon: Icon(
+              Icons.account_circle_outlined,
+              size: 30,
+              color: Colors.black,
+            ),
+            title: Text('About Me'),
+            activeColor: Colors.black,
           )
         ],
       ),
