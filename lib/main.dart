@@ -9,11 +9,11 @@ void main() => runApp(MaterialApp(
       home: AnimatedSplashScreen(
         splash: Center(
           child: SpinKitDoubleBounce(
-            color: Colors.greenAccent,
+            color: Colors.black,
             size: 125,
           ),
         ),
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
         duration: 2000,
         nextScreen: HomeScreen(),
       ),

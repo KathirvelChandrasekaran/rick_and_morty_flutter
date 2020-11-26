@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:connectivity/connectivity.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
@@ -17,33 +18,15 @@ class _EpisodesState extends State<Episodes> {
   static int pageCount = 1;
   ScrollController _controller;
   String webURL = "https://rickandmortyapi.com/api/episode?page=$pageCount";
+  var refreshkey = GlobalKey<RefreshIndicatorState>();
 
-
-  _scrollListener() {
-    if (_controller.offset >= _controller.position.maxScrollExtent &&
-        !_controller.position.outOfRange) {
-      setState(() {
-        pageCount <= 0 ? pageCount = 1 : pageCount;
-        pageCount++;
-        fetchEpisodes(
-            "https://rickandmortyapi.com/api/episode/?page=$pageCount");
-      });
-    }
-    if (_controller.offset <= _controller.position.minScrollExtent &&
-        !_controller.position.outOfRange) {
-      setState(() {
-        pageCount <= 0 ? pageCount = 1 : pageCount;
-        pageCount--;
-        fetchEpisodes(
-            "https://rickandmortyapi.com/api/episode/?page=$pageCount");
-      });
-    }
+  int checkCount(pageCount) {
+    return pageCount <= 0 ? pageCount = 1 : pageCount;
   }
 
   @override
   void initState() {
     _controller = ScrollController();
-    _controller.addListener(_scrollListener);
     super.initState();
     this.checkConnectivity();
   }
@@ -94,64 +77,144 @@ class _EpisodesState extends State<Episodes> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: c3,
-      body: EpisodeBody(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        elevation: 0,
+        title: Text(
+          'Episodes',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      backgroundColor: pageColor,
+      body: episodeBody(),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+              onPressed: refreshlist,
+              backgroundColor: Colors.black,
+              heroTag: null,
+              child: new Icon(
+                Icons.refresh_outlined,
+                color: Colors.white,
+              )),
+          SizedBox(
+            height: 20,
+          ),
+          FloatingActionButton(
+              onPressed: () {
+                if (_controller.offset <=
+                        _controller.position.minScrollExtent &&
+                    !_controller.position.outOfRange) {
+                  setState(() {
+                    pageCount = this.checkCount(pageCount);
+                    pageCount--;
+                    fetchEpisodes(
+                        "https://rickandmortyapi.com/api/episode/?page=$pageCount");
+                  });
+                }
+              },
+              heroTag: null,
+              backgroundColor: Colors.black,
+              child: new Icon(
+                Icons.arrow_left,
+                color: Colors.white,
+              )),
+          SizedBox(
+            height: 20,
+          ),
+          FloatingActionButton(
+              onPressed: () {
+                if (_controller.offset <=
+                        _controller.position.minScrollExtent &&
+                    !_controller.position.outOfRange) {
+                  setState(() {
+                    pageCount = this.checkCount(pageCount);
+                    pageCount++;
+                    fetchEpisodes(
+                        "https://rickandmortyapi.com/api/episode/?page=$pageCount");
+                  });
+                }
+              },
+              heroTag: null,
+              backgroundColor: Colors.black,
+              child: new Icon(
+                Icons.arrow_right,
+                color: Colors.white,
+              )),
+        ],
+      ),
     );
   }
 
-  Widget EpisodeBody() {
+  Future<Null> refreshlist() async {
+    refreshkey.currentState?.show(atTop: true);
+    await Future.delayed(
+        Duration(seconds: 0.5.toInt())); //wait here for 2 second
+    setState(() {
+      this.fetchEpisodes(webURL);
+      pageCount = 1;
+    });
+  }
+
+  Widget episodeBody() {
     if (episodes.contains(null) || episodes.length < 0 || loading) {
       return Center(
         child: SpinKitDoubleBounce(
-          color: Colors.white,
+          color: Colors.black,
           size: 125,
         ),
       );
     }
     return SafeArea(
-      child: ListView.builder(
-          controller: _controller,
-          itemCount: episodes.length,
-          itemBuilder: (context, index) {
-            return EpisodeCard(episodes[index]);
-          }),
+      child: RefreshIndicator(
+        child: ListView.builder(
+            controller: _controller,
+            itemCount: episodes.length,
+            itemBuilder: (context, index) {
+              return episodeCard(episodes[index]);
+            }),
+        onRefresh: refreshlist,
+      ),
     );
   }
 
-  Widget EpisodeCard(index) {
+  Widget episodeCard(index) {
     var name = index['name'];
-    var air_date = index['air_date'];
+    var airDate = index['air_date'];
     var episode = index['episode'];
     List characters = index['characters'];
 
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(15.0),
       child: Card(
-          elevation: 10,
+          elevation: 15,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(25.0),
           ),
-          color: Colors.pink,
+          color: cardColor,
           child: Container(
-            decoration: BoxDecoration(
-                border: Border(
-                    top: BorderSide(width: 2.0, color: Colors.white))),
             margin: EdgeInsets.all(20.0),
-            height: 150.0,
+            height: 155.0,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(name,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold
-                        ,letterSpacing: 2)),
+                Expanded(
+                  child: Text(name,
+                      style: TextStyle(
+                          fontSize: 20,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2)),
+                ),
                 SizedBox(
-                  height: 10.0,
+                  height: 20.0,
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(children: [
                       Text("Air Date\t:\t",
@@ -159,12 +222,15 @@ class _EpisodesState extends State<Episodes> {
                             fontSize: 20,
                             color: Colors.white,
                           )),
-                      Text(air_date,
+                      Text(airDate,
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
                     ]),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(children: [
                       Text("Episode\t:\t",
                           style: TextStyle(
@@ -179,6 +245,9 @@ class _EpisodesState extends State<Episodes> {
                                 fontWeight: FontWeight.bold)),
                       ),
                     ]),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(children: [
                       Text("Character count\t:\t",
                           style: TextStyle(

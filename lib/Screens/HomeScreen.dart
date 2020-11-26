@@ -15,7 +15,7 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  List colorList = [c1,c2,c3,c4];
+  List colorList = [pageColor,pageColor,pageColor,pageColor];
 
   List screenList = [
     Character(),
@@ -43,38 +43,38 @@ class _HomeScreenState extends State<HomeScreen> {
           BottomNavyBarItem(
             icon: Icon(
               Icons.face_outlined,
-              color: c1,
+              color: navItemColor,
               size: 30,
             ),
             title: Text('Characters'),
-            activeColor: Colors.white,
+            activeColor: navItemColor,
           ),
           BottomNavyBarItem(
             icon: Icon(
               Icons.location_city_outlined,
               size: 30,
-              color: Color(0xff1b998b),
+              color: navItemColor,
             ),
             title: Text('Location'),
-            activeColor: Colors.white,
+            activeColor: navItemColor,
           ),
           BottomNavyBarItem(
             icon: Icon(
               Icons.play_circle_fill_outlined,
               size: 30,
-              color: Color(0xff1c3144),
+              color: navItemColor,
             ),
             title: Text('Episodes'),
-            activeColor: Colors.white,
+            activeColor: navItemColor,
           ),
           BottomNavyBarItem(
             icon: Icon(
               Icons.account_circle_outlined,
               size: 30,
-              color: Colors.black,
+              color: navItemColor,
             ),
             title: Text('About Me'),
-            activeColor: Colors.black,
+            activeColor: navItemColor,
           )
         ],
       ),

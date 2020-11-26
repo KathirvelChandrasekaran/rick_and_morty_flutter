@@ -19,32 +19,15 @@ class _LocationState extends State<Location> {
   String webURL = "https://rickandmortyapi.com/api/location/?page=$pageCount";
 
   ScrollController _controller;
+  var refreshkey = GlobalKey<RefreshIndicatorState>();
 
-  _scrollListener() {
-    if (_controller.offset >= _controller.position.maxScrollExtent &&
-        !_controller.position.outOfRange) {
-      setState(() {
-        pageCount <= 0 ? pageCount = 1 : pageCount;
-        pageCount++;
-        fetchLocation(
-            "https://rickandmortyapi.com/api/location/?page=$pageCount");
-      });
-    }
-    if (_controller.offset <= _controller.position.minScrollExtent &&
-        !_controller.position.outOfRange) {
-      setState(() {
-        pageCount <= 0 ? pageCount = 1 : pageCount;
-        pageCount--;
-        fetchLocation(
-            "https://rickandmortyapi.com/api/location/?page=$pageCount");
-      });
-    }
+  int checkCount(pageCount) {
+    return pageCount <= 0 ? pageCount = 1 : pageCount;
   }
 
   @override
   void initState() {
     _controller = ScrollController();
-    _controller.addListener(_scrollListener);
     super.initState();
     this.checkConnectivity();
   }
@@ -95,64 +78,143 @@ class _LocationState extends State<Location> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: c2,
-      body: LocationBody(),
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        centerTitle: true,
+        elevation: 0,
+        title: Text(
+          'Location',
+          style: TextStyle(
+            color: Colors.black,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      backgroundColor: pageColor,
+      body: locationBody(),
+      floatingActionButton: Column(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          FloatingActionButton(
+              onPressed: refreshlist,
+              backgroundColor: Colors.black,
+              heroTag: null,
+              child: new Icon(
+                Icons.refresh_outlined,
+                color: Colors.white,
+              )),
+          SizedBox(
+            height: 20,
+          ),
+          FloatingActionButton(
+              onPressed: () {
+                if (_controller.offset <=
+                        _controller.position.minScrollExtent &&
+                    !_controller.position.outOfRange) {
+                  setState(() {
+                    pageCount = this.checkCount(pageCount);
+                    pageCount--;
+                    fetchLocation(
+                        "https://rickandmortyapi.com/api/location/?page=$pageCount");
+                  });
+                }
+              },
+              heroTag: null,
+              backgroundColor: Colors.black,
+              child: new Icon(
+                Icons.arrow_left,
+                color: Colors.white,
+              )),
+          SizedBox(
+            height: 20,
+          ),
+          FloatingActionButton(
+              onPressed: () {
+                if (_controller.offset <=
+                        _controller.position.minScrollExtent &&
+                    !_controller.position.outOfRange) {
+                  setState(() {
+                    pageCount = this.checkCount(pageCount);
+                    pageCount++;
+                    fetchLocation(
+                        "https://rickandmortyapi.com/api/location/?page=$pageCount");
+                  });
+                }
+              },
+              heroTag: null,
+              backgroundColor: Colors.black,
+              child: new Icon(
+                Icons.arrow_right,
+                color: Colors.white,
+              )),
+        ],
+      ),
     );
   }
 
-  Widget LocationBody() {
+  Future<Null> refreshlist() async {
+    refreshkey.currentState?.show(atTop: true);
+    await Future.delayed(
+        Duration(seconds: 0.5.toInt())); //wait here for 2 second
+    setState(() {
+      this.fetchLocation(webURL);
+      pageCount = 1;
+    });
+  }
+
+  Widget locationBody() {
     if (location.contains(null) || location.length < 0 || loading) {
       return Center(
         child: SpinKitDoubleBounce(
-          color: Colors.white,
+          color: Colors.black,
           size: 125,
         ),
       );
     }
     return SafeArea(
-      child: ListView.builder(
-          controller: _controller,
-          itemCount: location.length,
-          itemBuilder: (context, index) {
-            return LocationCard(location[index]);
-          }),
+      child: RefreshIndicator(
+        child: ListView.builder(
+            controller: _controller,
+            itemCount: location.length,
+            itemBuilder: (context, index) {
+              return locationCard(location[index]);
+            }),
+        onRefresh: refreshlist,
+      ),
     );
   }
 
-  Widget LocationCard(index) {
+  Widget locationCard(index) {
     var name = index['name'];
     var type = index['type'];
     var dimension = index['dimension'];
     List residents = index['residents'];
-
     return Padding(
-      padding: const EdgeInsets.all(10.0),
+      padding: const EdgeInsets.all(15.0),
       child: Card(
-          elevation: 10,
+          elevation: 15,
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20.0),
+            borderRadius: BorderRadius.circular(25.0),
           ),
-          color: Colors.pink,
+          color: cardColor,
           child: Container(
-            decoration: BoxDecoration(
-                border: Border(
-                    top: BorderSide(width: 2.0, color: Colors.white))),
             margin: EdgeInsets.all(20.0),
-            height: 150.0,
+            height: 155.0,
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
+              crossAxisAlignment: CrossAxisAlignment.center,
               children: [
-                Text(name,
-                    style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold
-                    ,letterSpacing: 2)),
+                Expanded(
+                  child: Text(name,
+                      style: TextStyle(
+                          fontSize: 25,
+                          color: Colors.white,
+                          fontWeight: FontWeight.bold,
+                          letterSpacing: 2)),
+                ),
                 SizedBox(
-                  height: 10.0,
+                  height: 20.0,
                 ),
                 Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Row(children: [
                       Text("Type\t:\t",
@@ -166,6 +228,9 @@ class _LocationState extends State<Location> {
                               color: Colors.white,
                               fontWeight: FontWeight.bold)),
                     ]),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(children: [
                       Text("Dimension\t:\t",
                           style: TextStyle(
@@ -180,6 +245,9 @@ class _LocationState extends State<Location> {
                                 fontWeight: FontWeight.bold)),
                       ),
                     ]),
+                    SizedBox(
+                      height: 10,
+                    ),
                     Row(children: [
                       Text("Residents count\t:\t",
                           style: TextStyle(
