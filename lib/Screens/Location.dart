@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:connectivity/connectivity.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
@@ -44,7 +45,33 @@ class _LocationState extends State<Location> {
     _controller = ScrollController();
     _controller.addListener(_scrollListener);
     super.initState();
-    this.fetchLocation(webURL);
+    this.checkConnectivity();
+  }
+
+  checkConnectivity() async {
+    var connectivityResult = await (Connectivity().checkConnectivity());
+    if ((connectivityResult == ConnectivityResult.mobile) ||
+        (connectivityResult == ConnectivityResult.wifi))
+      this.fetchLocation(this.webURL);
+    else
+      showDialog(
+          context: context,
+          builder: (BuildContext context) {
+            return AlertDialog(
+              backgroundColor: Colors.white,
+              elevation: 50,
+              title: Text(
+                "No internet connectivity 🤦‍♂️",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black),
+              ),
+              content: Text(
+                "Please connect the device to internet.",
+                textAlign: TextAlign.center,
+                style: TextStyle(color: Colors.black),
+              ),
+            );
+          });
   }
 
   fetchLocation(url) async {
