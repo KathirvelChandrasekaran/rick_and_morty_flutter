@@ -6,6 +6,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:http/http.dart' as http;
 
 import 'package:expansion_card/expansion_card.dart';
+import 'package:rick_and_morty/Utils/colors.dart';
 
 class Character extends StatefulWidget {
   @override
@@ -97,7 +98,7 @@ class _CharacterState extends State<Character> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xff764248),
+      backgroundColor: c1,
       body: characterBody(),
     );
   }
@@ -129,7 +130,7 @@ class _CharacterState extends State<Character> {
     var location = index['origin']['name'];
     List episodes = index['episode'];
     return ExpansionCard(
-      backgroundColor: Color(0xff764248),
+      backgroundColor: c1,
       borderRadius: 20,
       title: Container(
         child: Row(

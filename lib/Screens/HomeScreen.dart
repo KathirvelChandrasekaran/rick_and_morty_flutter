@@ -4,10 +4,9 @@ import 'package:rick_and_morty/Screens/About%20Me.dart';
 import 'package:rick_and_morty/Screens/Characters.dart';
 import 'package:rick_and_morty/Screens/Episodes.dart';
 import 'package:rick_and_morty/Screens/Location.dart';
+import 'package:rick_and_morty/Utils/colors.dart';
 
-Color c1 = Color(0xff764248);
-Color c2 = Color(0xffdda3b2);
-Color c3 = Color(0xffffadc6);
+
 Color c4 = Colors.white;
 class HomeScreen extends StatefulWidget {
   @override
