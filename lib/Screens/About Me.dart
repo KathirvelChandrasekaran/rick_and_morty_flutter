@@ -20,7 +20,8 @@ class AboutMe extends StatelessWidget {
   }
 
   _launchSourceCode() async {
-    const git = "https://github.com/KathirvelChandrasekaran/rick_and_morty_flutter";
+    const git =
+        "https://github.com/KathirvelChandrasekaran/rick_and_morty_flutter";
     if (await canLaunch(git))
       await launch(git);
     else
@@ -57,7 +58,8 @@ class AboutMe extends StatelessWidget {
                     fontSize: 30,
                     color: Colors.black,
                     letterSpacing: 2,
-                    fontWeight: FontWeight.w400),
+                    fontWeight: FontWeight.w400,
+                    fontFamily: 'Nunito'),
               ),
               SizedBox(
                 height: 15.0,
@@ -102,15 +104,14 @@ class AboutMe extends StatelessWidget {
                     padding: EdgeInsets.all(20),
                     decoration: BoxDecoration(
                         color: Colors.black,
-                        borderRadius: BorderRadius.circular(50)
-                    ),
+                        borderRadius: BorderRadius.circular(50)),
                     child: Text(
                       'Source code',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20,
-                      ),
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontFamily: 'Nunito'),
                     ),
                   ),
                 ),

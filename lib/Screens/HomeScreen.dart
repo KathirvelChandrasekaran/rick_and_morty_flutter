@@ -6,8 +6,8 @@ import 'package:rick_and_morty/Screens/Episodes.dart';
 import 'package:rick_and_morty/Screens/Location.dart';
 import 'package:rick_and_morty/Utils/colors.dart';
 
-
 Color c4 = Colors.white;
+
 class HomeScreen extends StatefulWidget {
   @override
   _HomeScreenState createState() => _HomeScreenState();
@@ -15,14 +15,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int currentIndex = 0;
-  List colorList = [pageColor,pageColor,pageColor,pageColor];
+  List colorList = [pageColor, pageColor, pageColor, pageColor];
 
-  List screenList = [
-    Character(),
-    Location(),
-    Episodes(),
-    AboutMe()
-  ];
+  List screenList = [Character(), Location(), Episodes(), AboutMe()];
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +41,12 @@ class _HomeScreenState extends State<HomeScreen> {
               color: navItemColor,
               size: 30,
             ),
-            title: Text('Characters'),
+            title: Text(
+              'Characters',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+              ),
+            ),
             activeColor: navItemColor,
           ),
           BottomNavyBarItem(
@@ -55,7 +55,12 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30,
               color: navItemColor,
             ),
-            title: Text('Location'),
+            title: Text(
+              'Location',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+              ),
+            ),
             activeColor: navItemColor,
           ),
           BottomNavyBarItem(
@@ -64,7 +69,12 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30,
               color: navItemColor,
             ),
-            title: Text('Episodes'),
+            title: Text(
+              'Episodes',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+              ),
+            ),
             activeColor: navItemColor,
           ),
           BottomNavyBarItem(
@@ -73,7 +83,12 @@ class _HomeScreenState extends State<HomeScreen> {
               size: 30,
               color: navItemColor,
             ),
-            title: Text('About Me'),
+            title: Text(
+              'About Me',
+              style: TextStyle(
+                fontFamily: 'Nunito',
+              ),
+            ),
             activeColor: navItemColor,
           )
         ],

@@ -47,12 +47,15 @@ class _LocationState extends State<Location> {
               title: Text(
                 "No internet connectivity 🤦‍♂️",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.bold),
               ),
               content: Text(
                 "Please connect the device to internet.",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black, fontFamily: 'Nunito'),
               ),
             );
           });
@@ -85,9 +88,9 @@ class _LocationState extends State<Location> {
         title: Text(
           'Location',
           style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Nunito'),
         ),
       ),
       backgroundColor: pageColor,
@@ -209,7 +212,8 @@ class _LocationState extends State<Location> {
                           fontSize: 25,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          letterSpacing: 2)),
+                          letterSpacing: 2,
+                          fontFamily: 'Nunito')),
                 ),
                 SizedBox(
                   height: 20.0,
@@ -219,14 +223,15 @@ class _LocationState extends State<Location> {
                     Row(children: [
                       Text("Type\t:\t",
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          )),
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'Nunito')),
                       Text(type,
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Nunito')),
                     ]),
                     SizedBox(
                       height: 10,
@@ -234,15 +239,16 @@ class _LocationState extends State<Location> {
                     Row(children: [
                       Text("Dimension\t:\t",
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          )),
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'Nunito')),
                       Expanded(
                         child: Text(dimension,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Nunito')),
                       ),
                     ]),
                     SizedBox(
@@ -251,14 +257,15 @@ class _LocationState extends State<Location> {
                     Row(children: [
                       Text("Residents count\t:\t",
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          )),
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'Nunito')),
                       Text(residents.length.toString(),
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Nunito')),
                     ]),
                   ],
                 )

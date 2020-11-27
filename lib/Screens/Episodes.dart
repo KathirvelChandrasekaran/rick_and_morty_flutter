@@ -46,12 +46,15 @@ class _EpisodesState extends State<Episodes> {
               title: Text(
                 "No internet connectivity 🤦‍♂️",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.bold),
               ),
               content: Text(
                 "Please connect the device to internet.",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black, fontFamily: 'Nunito'),
               ),
             );
           });
@@ -84,9 +87,9 @@ class _EpisodesState extends State<Episodes> {
         title: Text(
           'Episodes',
           style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Nunito'),
         ),
       ),
       backgroundColor: pageColor,
@@ -208,7 +211,8 @@ class _EpisodesState extends State<Episodes> {
                           fontSize: 20,
                           color: Colors.white,
                           fontWeight: FontWeight.bold,
-                          letterSpacing: 2)),
+                          letterSpacing: 2,
+                          fontFamily: 'Nunito')),
                 ),
                 SizedBox(
                   height: 20.0,
@@ -219,14 +223,15 @@ class _EpisodesState extends State<Episodes> {
                     Row(children: [
                       Text("Air Date\t:\t",
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          )),
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'Nunito')),
                       Text(airDate,
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Nunito')),
                     ]),
                     SizedBox(
                       height: 10,
@@ -234,15 +239,16 @@ class _EpisodesState extends State<Episodes> {
                     Row(children: [
                       Text("Episode\t:\t",
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          )),
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'Nunito')),
                       Expanded(
                         child: Text(episode,
                             style: TextStyle(
                                 fontSize: 20,
                                 color: Colors.white,
-                                fontWeight: FontWeight.bold)),
+                                fontWeight: FontWeight.bold,
+                                fontFamily: 'Nunito')),
                       ),
                     ]),
                     SizedBox(
@@ -251,14 +257,15 @@ class _EpisodesState extends State<Episodes> {
                     Row(children: [
                       Text("Character count\t:\t",
                           style: TextStyle(
-                            fontSize: 20,
-                            color: Colors.white,
-                          )),
+                              fontSize: 20,
+                              color: Colors.white,
+                              fontFamily: 'Nunito')),
                       Text(characters.length.toString(),
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.white,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Nunito')),
                     ]),
                   ],
                 )

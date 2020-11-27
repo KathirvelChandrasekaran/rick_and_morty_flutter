@@ -50,12 +50,15 @@ class _CharacterState extends State<Character> {
               title: Text(
                 "No internet connectivity 🤦‍♂️",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(
+                    color: Colors.black,
+                    fontFamily: 'Nunito',
+                    fontWeight: FontWeight.bold),
               ),
               content: Text(
                 "Please connect the device to internet.",
                 textAlign: TextAlign.center,
-                style: TextStyle(color: Colors.black),
+                style: TextStyle(color: Colors.black, fontFamily: 'Nunito'),
               ),
             );
           });
@@ -89,9 +92,9 @@ class _CharacterState extends State<Character> {
         title: Text(
           'Characters',
           style: TextStyle(
-            color: Colors.black,
-            fontWeight: FontWeight.bold,
-          ),
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontFamily: 'Nunito'),
         ),
       ),
       backgroundColor: pageColor,
@@ -224,6 +227,7 @@ class _CharacterState extends State<Character> {
                   style: TextStyle(
                       fontSize: 25,
                       fontWeight: FontWeight.bold,
+                      fontFamily: 'Nunito',
                       color: Colors.black,
                       letterSpacing: 1.5),
                 ),
@@ -240,14 +244,18 @@ class _CharacterState extends State<Character> {
                   Container(
                     margin: EdgeInsets.only(left: 140),
                     child: Text("Status \t:\t",
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontFamily: 'Nunito')),
                   ),
                   Container(
                     child: Text(status,
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
-                            fontWeight: FontWeight.bold)),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Nunito')),
                   ),
                 ],
               ),
@@ -256,7 +264,10 @@ class _CharacterState extends State<Character> {
                   Container(
                     margin: EdgeInsets.only(left: 140),
                     child: Text("Species \t:\t",
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontFamily: 'Nunito')),
                   ),
                   Container(
                     child: Expanded(
@@ -264,7 +275,8 @@ class _CharacterState extends State<Character> {
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Nunito')),
                     ),
                   ),
                 ],
@@ -274,14 +286,18 @@ class _CharacterState extends State<Character> {
                   Container(
                     margin: EdgeInsets.only(left: 140),
                     child: Text("Gender \t:\t",
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontFamily: 'Nunito')),
                   ),
                   Container(
                     child: Text(gender,
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
-                            fontWeight: FontWeight.bold)),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Nunito')),
                   ),
                 ],
               ),
@@ -290,7 +306,10 @@ class _CharacterState extends State<Character> {
                   Container(
                     margin: EdgeInsets.only(left: 140),
                     child: Text("Location \t:\t",
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontFamily: 'Nunito')),
                   ),
                   Container(
                     child: Expanded(
@@ -298,7 +317,8 @@ class _CharacterState extends State<Character> {
                           style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
-                              fontWeight: FontWeight.bold)),
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Nunito')),
                     ),
                   ),
                 ],
@@ -308,14 +328,18 @@ class _CharacterState extends State<Character> {
                   Container(
                     margin: EdgeInsets.only(left: 140),
                     child: Text("Total Episodes \t:\t",
-                        style: TextStyle(fontSize: 20, color: Colors.black)),
+                        style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.black,
+                            fontFamily: 'Nunito')),
                   ),
                   Container(
                     child: Text(episodes.length.toString(),
                         style: TextStyle(
                             fontSize: 20,
                             color: Colors.black,
-                            fontWeight: FontWeight.bold)),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Nunito')),
                   ),
                 ],
               )
