@@ -1,10 +1,10 @@
 # Rick and Morty
 
-A new Flutter application about the famous Rick and Morty show.
+A new Flutter application about the famous Rick and Morty show 🍻.
 
 ## API Used
 
-API used to develop the app is [Rickandmortyapi](https://rickandmortyapi.com/documentation/#rest).
+API used to develop the app is [Rickandmortyapi](https://rickandmortyapi.com/documentation/#rest) 💻.
 
 ## Screen Shots
 
@@ -15,6 +15,6 @@ API used to develop the app is [Rickandmortyapi](https://rickandmortyapi.com/doc
 ### Episodes Screen
 ![Episodes Screen](Screenshots/Episodes.png)
 ### About Me Screen
-![About Me Screen](Screenshots/About Me.png)
+![About Me Screen](Screenshots/About%20Me.png)
 
-> Feel free to fork the project.
+Feel free to fork the project 🙌.
