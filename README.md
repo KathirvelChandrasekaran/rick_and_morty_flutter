@@ -9,12 +9,15 @@ API used to develop the app is [Rickandmortyapi](https://rickandmortyapi.com/doc
 ## Screen Shots
 
 ### Character Screen
-![Characters Screen](Screenshots/Characters.png)
+<img src="Screenshots/Characters.png" width="200">
+
 ### Location Screen
-![Location Screen](Screenshots/Location.png)
+<img src="Screenshots/Location.png" width="200">
+
 ### Episodes Screen
-![Episodes Screen](Screenshots/Episodes.png)
+<img src="Screenshots/Episodes.png" width="200">
+
 ### About Me Screen
-![About Me Screen](Screenshots/About%20Me.png)
+<img src="Screenshots/About%20Me.png" width="200">
 
 Feel free to fork the project 🙌.
